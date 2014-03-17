@@ -1,6 +1,6 @@
 # Ansible Role: Java
 
-Installs Java for RHEL/CentOS 6.x.
+Installs Java for RHEL/CentOS 6.x and Debian/Ubuntu.
 
 ## Requirements
 
@@ -13,7 +13,7 @@ Available variables are listed below, along with default values (see `vars/main.
     java_packages:
       - java-1.6.0-openjdk
 
-Set the version/development kit of Java to install, along with any other necessary Java packages. Some other options include `java` or `java-1.7.0-openjdk`.
+Set the version/development kit of Java to install, along with any other necessary Java packages. Some other options include are included in the distribution-specific files in this role's 'vars' folder.
 
 ## Dependencies
 

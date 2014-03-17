@@ -1,4 +1,13 @@
 ---
-- name: Ensure Java is installed.
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Ensure Java is installed (RedHat).
   yum: name={{ item }} state=installed
   with_items: java_packages
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure Java is installed (Debian).
+  apt: name={{ item }} state=installed
+  with_items: java_packages
+  when: ansible_os_family == 'Debian'
