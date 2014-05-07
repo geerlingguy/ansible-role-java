@@ -32,7 +32,7 @@ script:
 
   # Make sure Java is available.
   - >
-    java -v
+    java -version
     | grep -q 'java version'
     && (echo 'Java is installed' && exit 0)
     || (echo 'Java is not installed' && exit 1)
