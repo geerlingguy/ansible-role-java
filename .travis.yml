@@ -30,9 +30,8 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # Make sure Java is available.
+  # Make sure Java is installed.
   - >
-    java -version
-    | grep -q 'java version'
+    which java
     && (echo 'Java is installed' && exit 0)
     || (echo 'Java is not installed' && exit 1)
