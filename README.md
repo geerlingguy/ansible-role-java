@@ -1,6 +1,8 @@
 # Ansible Role: Java
 
-Installs Java for RHEL/CentOS 6.x and Debian/Ubuntu.
+[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-java.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-java)
+
+Installs Java for RedHat/CentOS 6.x and Debian/Ubuntu linux servers.
 
 ## Requirements
 
