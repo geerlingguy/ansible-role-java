@@ -1,5 +1,8 @@
 ---
 - hosts: localhost
   remote_user: root
+  vars:
+    java_packages:
+      - openjdk-6-jdk
   roles:
     - ansible-role-java

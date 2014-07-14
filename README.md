@@ -25,7 +25,7 @@ None.
 
     - hosts: servers
       vars:
-        - java_packages:
+        java_packages:
           - java-1.6.0-openjdk
       roles:
         - { role: geerlingguy.java }
