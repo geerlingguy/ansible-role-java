@@ -1,7 +1,3 @@
 ---
-# JDK version options include:
-#   - java
-#   - openjdk-6-jdk
-#   - openjdk-7-jdk
-java_packages:
-  - openjdk-6-jdk
+# This space intentionally left blank.
+java_null: 0
