@@ -8,6 +8,6 @@
   when: ansible_os_family == 'RedHat'
 
 - name: Ensure Java is installed (Debian).
-  apt: name={{ item }} state=installed
+  apt: name={{ item }} state=installed update_cache=yes
   with_items: java_packages
   when: ansible_os_family == 'Debian'
