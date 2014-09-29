@@ -7,11 +7,21 @@
         java_packages: "{{ java_packages | default(java_packages_default) }}"
 
 - name: Ensure Java is installed (RedHat).
-  yum: name={{ item }} state=installed
+  yum:
+    name: "{{ item }}"
+    state: installed
   with_items: java_packages
   when: ansible_os_family == 'RedHat'
 
+- name: Update apt cache (Debian).
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400
+  when: ansible_os_family == 'Debian'
+
 - name: Ensure Java is installed (Debian).
-  apt: name={{ item }} state=installed
+  apt:
+    name: "{{ item }}"
+    state: installed
   with_items: java_packages
   when: ansible_os_family == 'Debian'
