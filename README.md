@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/geerlingguy/ansible-role-java.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-java)
 
-Installs Java for RedHat/CentOS 6.x and Debian/Ubuntu linux servers.
+Installs Java for RedHat/CentOS and Debian/Ubuntu linux servers.
 
 ## Requirements
 
@@ -13,9 +13,9 @@ None.
 Available variables are listed below, along with default values:
 
     java_packages:
-      - java-1.6.0-openjdk
+      - java-1.7.0-openjdk
 
-Set the version/development kit of Java to install, along with any other necessary Java packages. Some other options include are included in the distribution-specific files in this role's 'defaults' folder. Note that you **must** include this variable in order to have the proper version of Java installed, due to cross-platform compatibility issues (see: [Issue #8121](https://github.com/ansible/ansible/issues/8121)).
+Set the version/development kit of Java to install, along with any other necessary Java packages. Some other options include are included in the distribution-specific files in this role's 'defaults' folder.
 
 ## Dependencies
 
