@@ -2,22 +2,14 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Ensure Java is installed (RedHat).
-  yum:
-    name: "{{ item }}"
-    state: installed
-  with_items: java_packages
+- name: Define java_packages.
+  set_fact:
+    java_packages: "{{ __java_packages | list }}"
+  when: java_packages is not defined
+
+# Setup/install tasks.
+- include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- name: Update apt cache (Debian).
-  apt:
-    update_cache: yes
-    cache_valid_time: 86400
-  when: ansible_os_family == 'Debian'
-
-- name: Ensure Java is installed (Debian).
-  apt:
-    name: "{{ item }}"
-    state: installed
-  with_items: java_packages
+- include: setup-Debian.yml
   when: ansible_os_family == 'Debian'

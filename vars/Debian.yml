@@ -1,3 +1,7 @@
 ---
-# This space intentionally left blank.
-java_null: 0
+# JDK version options include:
+#   - java
+#   - openjdk-6-jdk
+#   - openjdk-7-jdk
+__java_packages:
+  - openjdk-7-jdk

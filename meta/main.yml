@@ -3,7 +3,7 @@ dependencies: []
 
 galaxy_info:
   author: geerlingguy
-  description: Java for RHEL/CentOS 6.x and Debian/Ubuntu
+  description: Java for Linux
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
   min_ansible_version: 1.4
@@ -11,6 +11,7 @@ galaxy_info:
   - name: EL
     versions:
     - 6
+    - 7
   - name: Debian
     versions:
     - all
