@@ -2,6 +2,10 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
+- name: Determine packages
+  set_fact: 
+        java_packages: "{{ java_packages | default(java_packages_default) }}"
+
 - name: Ensure Java is installed (RedHat).
   yum:
     name: "{{ item }}"
