@@ -40,7 +40,7 @@ For Ubuntu
     - hosts: server
       tasks:
         - name: installing repo for Java 8 in Ubuntu
-  	  apt_repository: repo='ppa:openjdk-r/ppa'
+  	      apt_repository: repo='ppa:openjdk-r/ppa'
 
     - hosts: server
       roles:
