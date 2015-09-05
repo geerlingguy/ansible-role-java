@@ -13,3 +13,6 @@
 
 - include: setup-Debian.yml
   when: ansible_os_family == 'Debian'
+
+- include: setup-FreeBSD.yml
+  when: ansible_os_family == 'FreeBSD'
