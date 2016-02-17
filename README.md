@@ -21,30 +21,34 @@ Set the version/development kit of Java to install, along with any other necessa
 
 None.
 
-## Example Playbook using default OpenJDK 7
+## Example Playbook (using default package, usually OpenJDK 7)
 
     - hosts: servers
       roles:
         - { role: geerlingguy.java }
 
-## Example Playbook using OpenJDK 8
+## Example Playbook (install OpenJDK 8)
 
-For RHEL / CentOS
+For RHEL / CentOS:
 
     - hosts: server
       roles:
-        - { role: geerlingguy.java, when: "ansible_os_family == 'RedHat'", java_packages: java-1.8.0-openjdk }
+        - role: geerlingguy.java
+          when: "ansible_os_family == 'RedHat'"
+          java_packages: java-1.8.0-openjdk
 
-For Ubuntu
+For Ubuntu:
 
     - hosts: server
       tasks:
         - name: installing repo for Java 8 in Ubuntu
   	      apt_repository: repo='ppa:openjdk-r/ppa'
-
+    
     - hosts: server
       roles:
-        - { role: geerlingguy.java, when: "ansible_os_family == 'Debian'", java_packages: openjdk-8-jdk }
+        - role: geerlingguy.java
+          when: "ansible_os_family == 'Debian'"
+          java_packages: openjdk-8-jdk
 
 ## License
 
