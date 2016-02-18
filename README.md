@@ -25,7 +25,7 @@ None.
 
     - hosts: servers
       roles:
-        - { role: geerlingguy.java }
+        - geerlingguy.java
 
 ## Example Playbook (install OpenJDK 8)
 
@@ -35,7 +35,8 @@ For RHEL / CentOS:
       roles:
         - role: geerlingguy.java
           when: "ansible_os_family == 'RedHat'"
-          java_packages: java-1.8.0-openjdk
+          java_packages:
+            - java-1.8.0-openjdk
 
 For Ubuntu:
 
@@ -48,7 +49,8 @@ For Ubuntu:
       roles:
         - role: geerlingguy.java
           when: "ansible_os_family == 'Debian'"
-          java_packages: openjdk-8-jdk
+          java_packages:
+            - openjdk-8-jdk
 
 ## License
 
