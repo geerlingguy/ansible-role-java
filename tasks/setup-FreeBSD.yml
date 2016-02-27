@@ -1,7 +1,7 @@
 ---
 - name: Ensure Java is installed.
   pkgng: "name={{ item }} state=present"
-  with_items: java_packages
+  with_items: "{{ java_packages }}"
 
 - name: ensure proc is mounted
   mount: name=/proc fstype=procfs src=proc opts=rw state=mounted
