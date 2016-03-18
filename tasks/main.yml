@@ -8,11 +8,15 @@
   when: java_packages is not defined
 
 # Setup/install tasks.
-- include: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+- block:
+  - include: setup-RedHat.yml
+    when: ansible_os_family == 'RedHat'
 
-- include: setup-Debian.yml
-  when: ansible_os_family == 'Debian'
+  - include: setup-Debian.yml
+    when: ansible_os_family == 'Debian'
 
-- include: setup-FreeBSD.yml
-  when: ansible_os_family == 'FreeBSD'
+  - include: setup-FreeBSD.yml
+    when: ansible_os_family == 'FreeBSD'
+  become: yes
+  become_method: sudo
+  become_user: root
