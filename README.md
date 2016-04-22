@@ -12,6 +12,7 @@ None.
 
 Available variables are listed below, along with default values:
 
+    # The defaults provided by this role are specific to each distribution.
     java_packages:
       - java-1.7.0-openjdk
 
@@ -38,7 +39,7 @@ For RHEL / CentOS:
           java_packages:
             - java-1.8.0-openjdk
 
-For Ubuntu:
+For Ubuntu < 16.04:
 
     - hosts: server
       tasks:
