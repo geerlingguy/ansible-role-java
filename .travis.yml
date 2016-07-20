@@ -48,7 +48,7 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # Ensure daemonize is available.
+  # Ensure Java is installed.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm which java'
 
   # Clean up
