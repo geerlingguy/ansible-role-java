@@ -2,24 +2,19 @@
 sudo: required
 
 env:
-  - repository: geerlingguy/docker-centos6-ansible
-    version: latest
+  - distro: centos6
     init: /sbin/init
     run_opts: ""
-  - repository: geerlingguy/docker-centos7-ansible
-    version: latest
+  - distro: centos7
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - repository: geerlingguy/docker-ubuntu1604-ansible
-    version: latest
+  - distro: ubuntu1604
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - repository: geerlingguy/docker-ubuntu1404-ansible
-    version: latest
+  - distro: ubuntu1404
     init: /sbin/init
     run_opts: ""
-  - repository: geerlingguy/docker-ubuntu1204-ansible
-    version: latest
+  - distro: ubuntu1204
     init: /sbin/init
     run_opts: ""
 
@@ -27,13 +22,13 @@ services:
   - docker
 
 before_install:
-  # Pull container
-  - 'sudo docker pull ${repository}:${version}'
+  # Pull container.
+  - 'sudo docker pull geerlingguy/docker-${distro}-ansible:latest'
 
 script:
   - container_id=$(mktemp)
-  # Run container in detached state
-  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ${repository}:${version} "${init}" > "${container_id}"'
+  # Run container in detached state.
+  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
 
   # Ansible syntax check.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
@@ -53,9 +48,8 @@ script:
   # Ensure Java is installed.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm which java'
 
-  # Clean up
+  # Clean up.
   - 'sudo docker stop "$(cat ${container_id})"'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
-
