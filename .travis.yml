@@ -51,9 +51,5 @@ script:
   # Ensure Java is installed.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm which java'
 
-after_success:
-  # Clean up.
-  - 'docker stop "$(cat ${container_id})"'
-
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
