@@ -1,1 +1,6 @@
-export JAVA_HOME=$JAVA_HOME:{{ java_home }}
+if [[ -v JAVA_HOME ]]; then
+  export JAVA_HOME=$JAVA_HOME
+else
+  export JAVA_HOME={{ java_home }}
+fi
+
