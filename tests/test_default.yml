@@ -9,3 +9,8 @@
 
   roles:
     - role_under_test
+
+  post_tasks:
+    - name: Check java install
+      shell: java -version
+      tags: [test]
