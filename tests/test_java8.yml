@@ -1,0 +1,32 @@
+---
+- hosts: all
+
+  pre_tasks:
+    - set_fact:
+        java_packages: java-1.8.0-openjdk
+      when: ansible_os_family == 'RedHat'
+
+    - set_fact:
+        java_packages: openjdk-8-jdk
+      when: ansible_os_family == 'Debian'
+
+    - name: Add debian repo for installing openjdk 8
+      apt_repository: repo='deb http://ftp.debian.org/debian jessie-backports main' state=present
+      when: ansible_distribution == 'Debian'
+
+    - name: Add ubuntu repo for installing different openjdk versions
+      apt_repository: repo='ppa:openjdk-r/ppa'
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Update apt cache.
+      apt: update_cache=yes cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+
+  roles:
+    - role_under_test
+
+  post_tasks:
+    - name: Check java install
+      shell: java -version 2>&1 | awk '/version/{print $NF}' | grep "1.8"
+      tags: [test]
