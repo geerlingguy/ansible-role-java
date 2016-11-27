@@ -1,4 +1,12 @@
 ---
+- name: Add debian repo for installing openjdk 8
+  apt_repository: repo='deb http://ftp.debian.org/debian jessie-backports main' state=present
+  when: ansible_distribution == 'Debian'
+
+- name: Add ubuntu repo for installing different openjdk versions
+  apt_repository: repo='ppa:openjdk-r/ppa'
+  when: ansible_distribution == 'Ubuntu'
+
 - name: Update apt cache.
   apt: update_cache=yes cache_valid_time=600
 
