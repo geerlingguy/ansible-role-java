@@ -5,12 +5,10 @@
     - set_fact:
         java_packages: java-1.7.0-openjdk
       when: ansible_os_family == 'RedHat'
-      tags: [test]
 
     - set_fact:
         java_packages: openjdk-7-jdk
       when: ansible_os_family == 'Debian'
-      tags: [test]
 
   roles:
     - role_under_test

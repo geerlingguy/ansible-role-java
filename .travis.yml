@@ -20,4 +20,4 @@ script:
   - './test.sh -p -i -s -r ${role} -o ${distro}'
 
 notifications:
-#  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

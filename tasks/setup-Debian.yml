@@ -1,11 +1,15 @@
 ---
 - name: Add debian repo for installing openjdk 8
   apt_repository: repo='deb http://ftp.debian.org/debian jessie-backports main' state=present
-  when: ansible_distribution == 'Debian'
+  when: ansible_distribution == 'Debian' and 'openjdk-8-jdk' in java_packages
 
-- name: Add ubuntu repo for installing different openjdk versions
+- name: Add ubuntu repo for installing openjdk 7
   apt_repository: repo='ppa:openjdk-r/ppa'
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'Ubuntu' and 'openjdk-7-jdk' in java_packages and ansible_os_version == '16.04'
+
+- name: Add ubuntu repo for installing openjdk 8
+  apt_repository: repo='ppa:openjdk-r/ppa'
+  when: ansible_distribution == 'Ubuntu' and 'openjdk-8-jdk' in java_packages and ansible_os_version != '16.04'
 
 - name: Update apt cache.
   apt: update_cache=yes cache_valid_time=600
