@@ -5,3 +5,9 @@
 #   - openjdk-7-jdk
 __java_packages:
   - openjdk-7-jdk
+
+__java_openjdk_ppa_mappings:
+  - package: openjdk-8-jdk
+    repository_url: 'ppa:openjdk-r/ppa'
+    distro_version: '16.04'
+    version_comparator: '<'

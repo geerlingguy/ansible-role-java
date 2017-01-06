@@ -1,8 +1,13 @@
 ---
-- name: Add APT Repo for OpenJDK 8
-  apt_repository: repo='ppa:openjdk-r/ppa'
-  with_items: "{{ java_packages }}"
-  when: item == 'openjdk-8-jdk'
+- name: Add extra repository (only if we find a repository mapping supporting a pkg in 'java_packages')
+  apt_repository: repo={{item.repository_url}} state=present
+  when:
+   - java_openjdk_ppa_repos_support
+   - "{{ item.package in java_packages }}"
+   - "{{ ansible_distribution_version|version_compare(item.distro_version, item.version_comparator) }}"
+  with_items:
+    - "{{ java_openjdk_ppa_mappings | default([]) }}"
+
 
 - name: Update apt cache.
   apt: update_cache=yes cache_valid_time=86400
