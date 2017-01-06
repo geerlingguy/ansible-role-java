@@ -22,6 +22,13 @@ Set the version/development kit of Java to install, along with any other necessa
 
 If set, the role will set the global environment variable `JAVA_HOME` to this value.
 
+    # Ubuntu/Debian specific:
+    java_openjdk_ppa_repos_support: false
+
+If set, the role will enable usage of custom ppa repositories to support newer JDKs in older distros.
+The role only adds a repository for configured combinations (in var. `java_openjdk_ppa_mappings`).
+By default `java_openjdk_ppa_mappings` contains a mapping to support OpenJDK 8 on Ubuntu-14.04
+
 ## Dependencies
 
 None.
@@ -43,19 +50,16 @@ For RHEL / CentOS:
           java_packages:
             - java-1.8.0-openjdk
 
-For Ubuntu < 16.04:
+For Ubuntu:
 
-    - hosts: server
-      tasks:
-        - name: installing repo for Java 8 in Ubuntu
-  	      apt_repository: repo='ppa:openjdk-r/ppa'
-    
     - hosts: server
       roles:
         - role: geerlingguy.java
           when: "ansible_os_family == 'Debian'"
           java_packages:
             - openjdk-8-jdk
+          #ppa repos only required for Ubuntu < 16.04
+          java_openjdk_ppa_repos_support: true
 
 ## License
 
