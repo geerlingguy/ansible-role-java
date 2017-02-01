@@ -43,13 +43,8 @@ For RHEL / CentOS:
           java_packages:
             - java-1.8.0-openjdk
 
-For Ubuntu < 16.04:
+For Ubuntu / Debian:
 
-    - hosts: server
-      tasks:
-        - name: installing repo for Java 8 in Ubuntu
-  	      apt_repository: repo='ppa:openjdk-r/ppa'
-    
     - hosts: server
       roles:
         - role: geerlingguy.java
