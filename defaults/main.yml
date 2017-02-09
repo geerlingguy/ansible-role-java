@@ -3,5 +3,8 @@
 # default (OpenJDK 1.7).
 # java_packages: []
 
+# Set java_ppa_repos if you would like to use a custom ppa debian/ubuntu repos the
+# than the default (for ex. to install openjdk-8 on Ubuntu 14.x).
+# java_ppa_repos: "ppa:openjdk-r/ppa"
+
 java_home: ""
-java_openjdk_ppa_repos_support: false

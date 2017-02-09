@@ -1,12 +1,7 @@
 ---
-- name: Add extra repository (only if we find a repository mapping supporting a pkg in 'java_packages')
-  apt_repository: repo={{item.repository_url}} state=present
-  when:
-   - java_openjdk_ppa_repos_support
-   - "{{ item.package in java_packages }}"
-   - "{{ ansible_distribution_version|version_compare(item.distro_version, item.version_comparator) }}"
-  with_items:
-    - "{{ java_openjdk_ppa_mappings | default([]) }}"
+- name: Add custom ppa repository (if configured)
+  apt_repository: "repo={{ java_ppa_repos }} state=present"
+  when: java_ppa_repos is defined and java_ppa_repos != ''
 
 
 - name: Update apt cache.

@@ -23,11 +23,15 @@ Set the version/development kit of Java to install, along with any other necessa
 If set, the role will set the global environment variable `JAVA_HOME` to this value.
 
     # Ubuntu/Debian specific:
-    java_openjdk_ppa_repos_support: false
+    java_ppa_repos: <undefined>
 
-If set, the role will enable usage of custom ppa repositories to support newer JDKs in older distros.
-The role only adds a repository for configured combinations (in var. `java_openjdk_ppa_mappings`).
-By default `java_openjdk_ppa_mappings` contains a mapping to support OpenJDK 8 on Ubuntu-14.04
+If set, the role will add the given custom ppa repository before installing the Java packages.
+For example to install openjdk-8 on Ubuntu 14.x, set the following:
+
+    java_ppa_repos: "ppa:openjdk-r/ppa"
+    java_packages:
+       - openjdk-8-jdk
+
 
 ## Dependencies
 
