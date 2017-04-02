@@ -1,4 +1,4 @@
 ---
 - name: Ensure Java is installed.
-  apt: "name={{ item }} state=present"
+  apt: "name={{ item }} state=present install_recommends={{ apt_install_recommends|default(omit) }}"
   with_items: "{{ java_packages }}"
