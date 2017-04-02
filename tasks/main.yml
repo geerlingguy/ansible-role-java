@@ -1,15 +1,15 @@
 ---
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
-  when: ansible_distribution != 'Ubuntu' or ansible_distribution != 'Fedora'
+  when: (ansible_distribution != 'Ubuntu' or ansible_distribution != 'Fedora') and java_packages is not defined
 
 - name: Include OS-specific variables for Fedora.
   include_vars: "{{ ansible_distribution }}.yml"
-  when: ansible_distribution == 'Fedora'
+  when: ansible_distribution == 'Fedora' and java_packages is not defined
 
 - name: Include version-specific variables for Ubuntu.
   include_vars: "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'Ubuntu' and java_packages is not defined
 
 - name: Define java_packages.
   set_fact:
