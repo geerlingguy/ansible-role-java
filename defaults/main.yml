@@ -2,5 +2,18 @@
 # Set java_packages if you would like to use a different version than the
 # default (OpenJDK 1.7).
 # java_packages: []
+#
+# And if you would like to use Oracle Java, then set this array:
+# java_packages:
+#   - oracle-java9-installer
+#   - oracle-java8-installer
+#   - oracle-java7-installer
+#   - ca-certificates
+#   - oracle-java8-set-default
+#
+# This example install Oracle Java 7, 8 and 9 and set as default 8.
 
 java_home: ""
+
+# Set java_cleanup to true if wyou would like clean (delete repos, keys and uninstall)
+java_cleanup: false

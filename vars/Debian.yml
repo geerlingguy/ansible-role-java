@@ -3,5 +3,13 @@
 #   - java
 #   - openjdk-6-jdk
 #   - openjdk-7-jdk
+# and for Oracle Java:
+#   - oracle-java9-installer
+#   - oracle-java8-installer
+#   - oracle-java7-installer
+#   - ca-certificates
+#   - oracle-java9-set-default
+#   - oracle-java8-set-default
+#   - oracle-java7-set-default
 __java_packages:
   - openjdk-7-jdk

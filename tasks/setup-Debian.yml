@@ -1,4 +1,45 @@
 ---
+- name: Ensure the WebUpd8 repo key is present.
+  apt_key: id=EEA14886 keyserver=keyserver.ubuntu.com state=present
+  register: webupd8key
+  until: webupd8key|success
+  retries: 5
+  delay: 10
+  when: not java_cleanup and java_packages|join|search("oracle")
+
+- name: Removing WebUpd8 repo key.
+  apt_key: id=EEA14886 keyserver=keyserver.ubuntu.com state=absent
+  when: java_cleanup and java_packages|join|search("oracle")
+
+- name: Installing WebUpd8 repo Java PPA.
+  apt_repository: repo='{{ item }} http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main' state=present mode=0644
+  with_items:
+    - deb
+    - deb-src
+  when: not java_cleanup and java_packages|join|search("oracle")
+
+- name: Remove WebUpd8 repo Java PPA.
+  apt_repository: repo='{{ item }} http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main' state=absent
+  with_items:
+    - deb
+    - deb-src
+  when: java_cleanup and java_packages|join|search("oracle")
+
+- name: Set Oracle Java License as accepted.
+  debconf: name='{{ item }}' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+  with_items:
+    - oracle-java6-installer
+    - oracle-java7-installer
+    - oracle-java8-installer
+    - oracle-java9-installer
+  when: not java_cleanup and java_packages|join|search("oracle")
+
 - name: Ensure Java is installed.
   apt: "name={{ item }} state=present"
   with_items: "{{ java_packages }}"
+  when: not java_cleanup
+
+- name: Remove Java.
+  apt: "name={{ item }} state=absent autoremove=true"
+  with_items: "{{ java_packages }}"
+  when: java_cleanup
