@@ -4,3 +4,4 @@
 # java_packages: []
 
 java_home: ""
+java_openjdk_ppa_repos_support: false
