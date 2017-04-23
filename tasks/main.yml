@@ -42,5 +42,6 @@
 
 - name: check java version
   command: java -version
+  changed_when: false
   register: javaversion
 - debug: var=javaversion
