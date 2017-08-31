@@ -1,0 +1,61 @@
+{
+  "variables": {
+      "aws_access_key":           "{{ env `AWS_ACCESS_KEY_ID`}}",
+      "aws_secret_key":           "{{ env `AWS_SECRET_ACCESS_KEY`}}",
+      "ec2_vpc_id":               "{{ env `ec2_vpc_id` }}",
+      "ec2_subnet_id":            "{{ env `ec2_subnet_id` }}",
+      "ec2_instance_type":        "{{ env `ec2_instance_type` }}",
+      "ec2_region":               "{{ env `ec2_region` }}",
+      "ec2_security_groups":      "{{ env `ec2_security_groups` }}",
+      "source_ami_filter_name":   "{{ env `source_ami_filter_name` }}",
+      "owner_tag":                "{{ env `owner_tag` }}",
+      "accounting_tag":           "{{ env `accounting_tag` }}"
+    },
+  "_comment":"Jenkins master",
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "access_key": "{{ user `aws_access_key` }}",
+      "secret_key": "{{ user `aws_secret_key` }}",
+      "instance_type": "{{ user `ec2_instance_type` }}",
+      "region": "{{ user `ec2_region` }}",
+      "source_ami_filter": {
+        "filters": {
+            "virtualization-type": "hvm",
+            "name": "ubuntu-base*",
+            "root-device-type": "ebs"
+          },
+        "owners": ["self"],
+        "most_recent": true
+      },
+      "vpc_id": "{{ user `ec2_vpc_id` }}",
+      "subnet_id" : "{{ user `ec2_subnet_id` }}",
+      "communicator": "ssh",
+      "ssh_username": "ubuntu",
+      "ssh_timeout": "10m",
+      "security_group_ids":   "{{ user `ec2_security_groups` }}",
+      "ami_name":             "jenkins-master {{ isotime \"2006-01-02 15-04-05\" }}",
+      "tags": {
+        "Owner":            "{{ user `owner_tag` }}",
+        "Accounting":       "{{ user `accounting_tag` }}",
+        "Name":             "Jenkins Master Image"
+      },
+      "run_tags": {
+        "Owner":            "{{ user `owner_tag` }}",
+        "Accounting":       "{{ user `accounting_tag` }}",
+        "Name":             "Jenkins Master Image"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+     "type": "ansible",
+     "playbook_file": "ansible/playbooks/main.yml",
+     "ansible_env_vars": [
+       "ANSIBLE_CONFIG=ansible.cfg",
+       "ANSIBLE_HOST_KEY_CHECKING=False",
+       "ANSIBLE_NOCOLOR=True"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+- name: Configure Jenkins master
+  sudo: True
+  hosts: all
+  roles:
+    - geerlingguy.jenkins
