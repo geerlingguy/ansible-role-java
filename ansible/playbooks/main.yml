@@ -4,4 +4,4 @@
   roles:
     - geerlingguy.jenkins
   vars:
-    jenkins_ssl_enable: true
+    jenkins_ssl_enable: True
