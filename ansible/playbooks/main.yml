@@ -1,7 +1,0 @@
-- name: Configure Jenkins master
-  sudo: True
-  hosts: all
-  roles:
-    - geerlingguy.jenkins
-  vars:
-    jenkins_ssl_enable: True
