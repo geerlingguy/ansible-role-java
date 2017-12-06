@@ -2,12 +2,11 @@
   "variables": {
       "aws_access_key":           "{{ env `AWS_ACCESS_KEY_ID`}}",
       "aws_secret_key":           "{{ env `AWS_SECRET_ACCESS_KEY`}}",
+      "aws_token":                "{{ env `AWS_SESSION_TOKEN` }}",
       "ec2_vpc_id":               "{{ env `ec2_vpc_id` }}",
       "ec2_subnet_id":            "{{ env `ec2_subnet_id` }}",
-      "ec2_instance_type":        "{{ env `ec2_instance_type` }}",
       "ec2_region":               "{{ env `ec2_region` }}",
       "ec2_security_groups":      "{{ env `ec2_security_groups` }}",
-      "source_ami_filter_name":   "{{ env `source_ami_filter_name` }}",
       "owner_tag":                "{{ env `owner_tag` }}",
       "accounting_tag":           "{{ env `accounting_tag` }}"
     },
@@ -17,7 +16,8 @@
       "type": "amazon-ebs",
       "access_key": "{{ user `aws_access_key` }}",
       "secret_key": "{{ user `aws_secret_key` }}",
-      "instance_type": "{{ user `ec2_instance_type` }}",
+      "token":      "{{ user `aws_token` }}",
+      "instance_type": "t2.small",
       "region": "{{ user `ec2_region` }}",
       "source_ami_filter": {
         "filters": {

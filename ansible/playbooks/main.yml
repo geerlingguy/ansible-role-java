@@ -3,3 +3,5 @@
   hosts: all
   roles:
     - geerlingguy.jenkins
+  vars:
+    jenkins_ssl_enable: true

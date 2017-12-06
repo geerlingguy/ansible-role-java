@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
 
     # Set a name for the virtual machine
-    vb.name = "jenkins-master"
+    # vb.name = "jenkins-master"
 
     # Display the VirtualBox GUI when booting the machine
     vb.gui = false
@@ -31,9 +31,15 @@ Vagrant.configure(2) do |config|
     ]
   end
 
+  # Install python interpreter prior to ansible run
+  config.vm.provision "shell",
+    inline: "apt-get -y install python"
+
   # Provision with ansible
   config.vm.provision "ansible" do |ansible|
     ansible.config_file = "ansible.cfg"
     ansible.playbook = "ansible/playbooks/main.yml"
+    ansible.compatibility_mode = "2.0"
+    ansible.verbose = 1
   end
 end
