@@ -4,10 +4,11 @@ services: docker
 env:
   - distro: centos7
   - distro: centos6
-  - distro: fedora24
+  - distro: fedora27
   - distro: ubuntu1604
   - distro: ubuntu1404
   - distro: ubuntu1204
+  - distro: debian9
   - distro: debian8
 
 script:
