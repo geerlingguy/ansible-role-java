@@ -1,4 +1,16 @@
 ---
+- set_fact:
+    backport_string: "{{ ansible_distribution_release }}-backports"
+  when: "ansible_distribution_release == 'jessie' and 'openjdk-8-jdk' in java_packages"
+
+- name: Install backports repo depending on packages
+  apt_repository:
+    repo: "deb http://ftp.debian.org/debian {{ backport_string }} main"
+  when: "{{ backport_string|default('') != '' }}"
+
 - name: Ensure Java is installed.
-  apt: "name={{ item }} state=present"
+  apt:
+    name: "{{ item }}"
+    state: present
+    default_release: "{{ backport_string|default(omit) }}"
   with_items: "{{ java_packages }}"
