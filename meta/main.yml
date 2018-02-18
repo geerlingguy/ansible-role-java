@@ -17,7 +17,8 @@ galaxy_info:
       - all
     - name: Debian
       versions:
-      - all
+      - 8
+      - 9
     - name: Ubuntu
       versions:
       - all
@@ -28,3 +29,7 @@ galaxy_info:
     - development
     - system
     - web
+    - java
+    - jdk
+    - openjdk
+    - oracle
