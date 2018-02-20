@@ -1,4 +1,17 @@
 ---
+- name: Ensure gtar and unzip are installed.
+  openbsd_pkg: "name={{ item }} state=present"
+  with_items:
+    - gtar--
+    - unzip--
+
+- name: Extract xbase if necessary.
+  unarchive:
+    src: ftp://ftp.icm.edu.pl/pub/OpenBSD/6.2/amd64/xbase62.tgz
+    dest: /
+    creates: /usr/X11R6/lib/libfreetype.a
+    remote_src: yes
+
 - name: Ensure Java is installed.
   openbsd_pkg: "name={{ item }} state=present"
   with_items: "{{ java_packages }}"
