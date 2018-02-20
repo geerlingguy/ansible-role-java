@@ -21,3 +21,12 @@
   openbsd_pkg: "name={{ item }} state=present"
   with_items: "{{ java_packages }}"
  
+- name: Set JAVA_HOME if configured.
+  lineinfile: dest=/etc/profile
+    regexp=''
+    insertafter=EOF
+    line='export JAVA_HOME={{ java_home }}'
+    state=present
+    create=True
+  when: java_home is defined and java_home != '' and ansible_os_family == 'OpenBSD'
+
