@@ -18,6 +18,6 @@
     remote_src: yes
 
 - name: Ensure Java is installed.
-  openbsd_pkg: "name={{ item }} state=present"
+  openbsd_pkg: "name={{ item }} state=latest"
   with_items: "{{ java_packages }}"
  
