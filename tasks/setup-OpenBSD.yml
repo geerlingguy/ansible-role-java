@@ -7,7 +7,7 @@
 
 - name: Extract xbase if necessary.
   unarchive:
-    src: ftp://ftp.icm.edu.pl/pub/OpenBSD/6.2/amd64/xbase62.tgz
+    src: ftp://{{ mirror }}/pub/OpenBSD/{{ ansible_distribution_version }}/{{ ansible_architecture }}/xbase62.tgz
     dest: /
     creates: /usr/X11R6/lib/libfreetype.a
     remote_src: yes
@@ -15,7 +15,7 @@
 - name: Ensure Java is installed.
   openbsd_pkg: "name={{ item }} state=present"
   with_items: "{{ java_packages }}"
-
+ 
 - name: ensure proc is mounted
   mount: name=/proc fstype=procfs src=proc opts=rw state=mounted
 
