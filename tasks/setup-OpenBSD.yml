@@ -5,9 +5,14 @@
     - gtar--
     - unzip--
 
+- name: Obtain version number.
+  shell: uname -r |sed 's/\.//'
+  register: ver
+  changed_when: False
+
 - name: Extract xbase if necessary.
   unarchive:
-    src: ftp://{{ mirror }}/pub/OpenBSD/{{ ansible_distribution_version }}/{{ ansible_architecture }}/xbase62.tgz
+    src: ftp://{{ mirror }}/pub/OpenBSD/{{ ansible_distribution_version }}/{{ ansible_architecture }}/xbase{{ ver.stdout }}.tgz
     dest: /
     creates: /usr/X11R6/lib/libfreetype.a
     remote_src: yes
