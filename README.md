@@ -57,6 +57,15 @@ For Ubuntu < 16.04:
           java_packages:
             - openjdk-8-jdk
 
+For OpenBSD:
+
+    - hosts: server
+      roles:
+        - role: geerlingguy.java
+          when: "ansible_os_family == 'OpenBSD'"
+          java_packages:
+            - jdk-1.8.0.144v0
+
 ## License
 
 MIT / BSD
