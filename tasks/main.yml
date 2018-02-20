@@ -31,6 +31,10 @@
   when: ansible_os_family == 'FreeBSD'
   static: no
 
+- include: setup-OpenBSD.yml
+  when: ansible_os_family == 'OpenBSD'
+  static: no
+
 # Environment setup.
 - name: Set JAVA_HOME if configured.
   template:
