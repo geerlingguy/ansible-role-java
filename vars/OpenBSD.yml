@@ -5,3 +5,4 @@
 #   - openjdk8
 __java_packages:
   - jdk
+mirror: ftp://ftp.icm.edu.pl
