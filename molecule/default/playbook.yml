@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  roles:
+    - role: ansible-role-java
+      install_cryptography_extension: True
+      ca_certificates:
+        certificates:
+          - alias: dummy-test
+            path: /usr/local/share/ca-certificates/dummy.crt
+          - url: google.com
+        password: test123

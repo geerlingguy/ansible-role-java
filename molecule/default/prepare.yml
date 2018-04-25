@@ -1,0 +1,14 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Ensures /usr/local/share/ca-certificates/ exists
+      file: path=/usr/local/share/ca-certificates/ state=directory
+    - name: Add certificate test file
+      copy:
+        src: dummy.crt
+        dest: /usr/local/share/ca-certificates/dummy.crt
+        owner: root
+        group: root
+        mode: 0644

@@ -1,2 +1,7 @@
 *.retry
 tests/test.sh
+__pycache__/
+/molecule/*/.molecule/
+/molecule/*/.pytest_cache/
+/molecule/*/pytestdebug.log
+*.pyc

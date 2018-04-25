@@ -1,30 +1,21 @@
----
-services: docker
+sudo: required
+dist: trusty
+
+language: python
+python:
+- '2.7'
 
 env:
-  - distro: centos7
-  - distro: centos6
-  - distro: fedora27
-  - distro: ubuntu1604
-  - distro: ubuntu1404
-  - distro: ubuntu1204
-  - distro: debian9
-  - distro: debian8
+  matrix:
+  - ANSIBLE_REF='ansible==2.5.0' BASE_IMAGE=ubuntu:xenial
+  - ANSIBLE_REF='ansible==2.5.0' BASE_IMAGE=debian:stretch
+  - ANSIBLE_REF='ansible<2.5' BASE_IMAGE=ubuntu:xenial
+  - ANSIBLE_REF='ansible<2.5' BASE_IMAGE=debian:stretch
+
+install:
+  - travis_retry pip install --upgrade pip setuptools wheel
+  - travis_retry pip install "${ANSIBLE_REF}" molecule docker-py
 
 script:
-  # Configure test script so we can run extra tests after playbook is run.
-  - export container_id=$(date +%s)
-  - export cleanup=false
+  - molecule test --driver-name docker
 
-  # Download test shim.
-  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/geerlingguy/73ef1e5ee45d8694570f334be385e181/raw/
-  - chmod +x ${PWD}/tests/test.sh
-
-  # Run tests.
-  - ${PWD}/tests/test.sh
-
-  # Ensure Java is installed.
-  - 'docker exec --tty ${container_id} env TERM=xterm which java'
-
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/

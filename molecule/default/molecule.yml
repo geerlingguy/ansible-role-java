@@ -1,0 +1,27 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+  enabled: False
+platforms:
+#  - name: molecule_test_instance-debian-9
+#    image: ${BASE_IMAGE:-debian:stretch}
+#  - name: molecule_test_instance-fedora27
+#    image: ${BASE_IMAGE:-fedora:27}
+  - name: molecule_test_instance-debian-8
+    image: ${BASE_IMAGE:-debian:jessie}
+
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+    enabled: False
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
