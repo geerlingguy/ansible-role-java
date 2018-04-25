@@ -1,8 +1,6 @@
-# Ansible Role: Java
+# Ansible Role: OpenJDK Java
 
-[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-java.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-java)
-
-Installs Java for RedHat/CentOS and Debian/Ubuntu linux servers.
+Installs OpenJDK Java for RedHat/CentOS and Debian/Ubuntu linux servers.
 
 ## Requirements
 
@@ -16,46 +14,35 @@ Available variables are listed below, along with default values:
     java_packages:
       - java-1.7.0-openjdk
 
-Set the version/development kit of Java to install, along with any other necessary Java packages. Some other options include are included in the distribution-specific files in this role's 'defaults' folder.
+Set the version/development kit of Java to install, along with any other necessary Java packages. 
+By default, it will try to install OpenJDK 8, even if it is not feasible (it will fail, in that case).
 
-    java_home: ""
+CA certificates can be added to the java keystore with the following variables:
 
-If set, the role will set the global environment variable `JAVA_HOME` to this value.
+```yaml
+    ca-certificates:
+      certificates:
+        - alias: cert
+          path: /usr/local/share/ca-certificates/cert.crt
+        - url: google.com
+      password: changeit
+```
 
 ## Dependencies
 
 None.
 
-## Example Playbook (using default package, usually OpenJDK 7)
+## Dependencies for tests
 
-    - hosts: servers
-      roles:
-        - geerlingguy.java
+The dependencies are `ansible`, `molecule` and `docker-py` Python packages.
 
-## Example Playbook (install OpenJDK 8)
+## Tests
 
-For RHEL / CentOS:
+Tests can be executed using:
 
-    - hosts: server
-      roles:
-        - role: geerlingguy.java
-          when: "ansible_os_family == 'RedHat'"
-          java_packages:
-            - java-1.8.0-openjdk
-
-For Ubuntu < 16.04:
-
-    - hosts: server
-      tasks:
-        - name: installing repo for Java 8 in Ubuntu
-  	      apt_repository: repo='ppa:openjdk-r/ppa'
-    
-    - hosts: server
-      roles:
-        - role: geerlingguy.java
-          when: "ansible_os_family == 'Debian'"
-          java_packages:
-            - openjdk-8-jdk
+```
+$ molecule --debug test --driver-name docker
+```
 
 ## License
 
@@ -63,4 +50,4 @@ MIT / BSD
 
 ## Author Information
 
-This role was created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+This role was originally created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
