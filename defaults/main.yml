@@ -4,3 +4,8 @@
 # java_packages: []
 
 java_home: ""
+ca_certificates:
+  certificates: []
+  password: "changeit"
+default_keystore_password: "changeit"
+

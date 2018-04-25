@@ -1,0 +1,20 @@
+---
+- name: Check if Java keystore use default password
+  command: keytool -list -keystore {{ lookup('env','JAVA_HOME') }}/jre/lib/security/cacerts -storepass {{ default_keystore_password }}
+  register: keytool_list
+  ignore_errors: yes
+  changed_when: false
+
+- name: Set Java keystore password
+  command: keytool -storepasswd -new {{ ca_certificates.password }} -storepass {{ default_keystore_password }} -keystore {{ lookup('env','JAVA_HOME') }}/jre/lib/security/cacerts
+  when: keytool_list is success
+
+- name: Add CA certificates to Java keystore
+  java_cert:
+    cert_alias: "{{ item.alias|default(omit) }}"
+    cert_url: "{{ item.url|default(omit) }}"
+    cert_path: "{{ item.path|default(omit) }}"
+    keystore_path: "{{ lookup('env','JAVA_HOME') }}/jre/lib/security/cacerts"
+    keystore_pass: "{{ ca_certificates.password }}"
+    state: present
+  with_items: "{{ ca_certificates.certificates }}"
