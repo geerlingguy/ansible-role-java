@@ -1,4 +1,10 @@
 ---
+- name: Wait until dpkg lock is released
+  wait_for:
+    path: /var/lib/dpkg/lock
+    state: absent
+    timeout: 600
+
 - name: Ensure Java is installed.
-  apt: "name={{ item }} state=present"
+  apt: "name={{ item }} state=present update_cache=yes"
   with_items: "{{ java_packages }}"
