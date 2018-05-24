@@ -4,10 +4,12 @@
   register: keytool_list
   ignore_errors: yes
   changed_when: false
+  no_log: true
 
 - name: Set Java keystore password
   command: keytool -storepasswd -new {{ ca_certificates.password }} -storepass {{ default_keystore_password }} -keystore {{ lookup('env','JAVA_HOME') }}/jre/lib/security/cacerts
   when: keytool_list is success
+  no_log: true
 
 - name: Add CA certificates to Java keystore
   java_cert:
