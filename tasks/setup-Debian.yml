@@ -6,21 +6,12 @@
       update_cache: true
   when: ansible_distribution == 'Debian' and ansible_distribution_release == 'jessie' and 'openjdk-8-jdk' in java_packages
 
-
-- name: get ca-certificates-java jessie-backports version
-  shell: apt-cache policy ca-certificates-java | grep jessie-backports -B1 | head -n1 | sed -e 's/^\s*\**\s*\(\S*\).*/\1/'
-  register: ca_certificates_java_version
-  changed_when: false
-  when: ansible_distribution == 'Debian' and ansible_distribution_release == 'jessie' and 'openjdk-8-jdk' in java_packages
-
-
 - name: Ensure Java is installed (jessie + jdk8).
   apt:
     name: "{{ item }}"
+    default_release: jessie-backports
     state: present
-  with_items:
-    - "ca-certificates-java={{ ca_certificates_java_version.stdout }}"
-    - openjdk-8-jdk
+  with_items: "{{ java_packages }}"
   when: ansible_distribution == 'Debian' and ansible_distribution_release == 'jessie' and 'openjdk-8-jdk' in java_packages
 
 
