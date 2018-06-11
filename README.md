@@ -1,5 +1,7 @@
 # Ansible Role: OpenJDK Java
 
+[![Build Status](https://travis-ci.org/peopledoc/ansible-role-java.svg?branch=master)](https://travis-ci.org/peopledoc/ansible-role-java)
+
 Installs OpenJDK Java for RedHat/CentOS and Debian/Ubuntu linux servers.
 
 ## Requirements
