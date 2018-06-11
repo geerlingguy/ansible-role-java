@@ -5,3 +5,5 @@
 #   - openjdk-9-jdk
 __java_packages:
   - openjdk-8-jdk
+
+java_home: /usr/lib/jvm/java-8-openjdk-amd64
