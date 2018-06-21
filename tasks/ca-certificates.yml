@@ -13,7 +13,9 @@
 
 - name: Set Java keystore password
   command: "keytool -storepasswd -new {{ ca_certificates.password }} -storepass {{ default_keystore_password }} -keystore {{ JAVA_HOME.stdout }}/jre/lib/security/cacerts"
-  when: keytool_list is success
+  when:
+    - keytool_list is success
+    - default_keystore_password != ca_certificates.password # update password only if required
   no_log: true
 
 - name: Add CA certificates to Java keystore
