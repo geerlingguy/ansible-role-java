@@ -3,6 +3,7 @@
   shell: . /etc/profile && echo $JAVA_HOME
   register: JAVA_HOME
   changed_when: false
+  check_mode: false
 
 - name: Check if Java keystore use default password
   command: "keytool -list -keystore {{ JAVA_HOME.stdout }}/jre/lib/security/cacerts -storepass {{ default_keystore_password }}"
@@ -10,6 +11,7 @@
   ignore_errors: yes
   changed_when: false
   no_log: true
+  check_mode: false
 
 - name: Set Java keystore password
   command: "keytool -storepasswd -new {{ ca_certificates.password }} -storepass {{ default_keystore_password }} -keystore {{ JAVA_HOME.stdout }}/jre/lib/security/cacerts"
