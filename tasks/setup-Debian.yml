@@ -21,3 +21,12 @@
     state: present
   with_items: "{{ java_packages }}"
   when: not(ansible_distribution == 'Debian' and ansible_distribution_release == 'jessie' and 'openjdk-8-jdk' in java_packages)
+
+- name: Get openjdk alternative
+  shell: "update-java-alternatives -l | grep openjdk | cut -f -1 -d ' '"
+  changed_when: false
+  register: openjdk_alternative
+
+- name: Set Java alternatives
+  command: "update-java-alternatives -s {{ openjdk_alternative.stdout }}"
+  changed_when: false
