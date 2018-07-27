@@ -1,4 +1,11 @@
 ---
+
+- name: Remove OracleJDK
+  apt:
+    name: "{{ oracle_jdk_packages }}"
+    state: absent
+  when: oracle_jdk_packages is defined and not keep_oracle_jdk|bool
+
 - name: Add jessie-backports if needed
   apt_repository:
       repo: 'deb http://ftp.debian.org/debian jessie-backports main'
@@ -8,18 +15,16 @@
 
 - name: Ensure Java is installed (jessie + jdk8).
   apt:
-    name: "{{ item }}"
+    name: "{{ java_packages }}"
     default_release: jessie-backports
     state: present
-  with_items: "{{ java_packages }}"
   when: ansible_distribution == 'Debian' and ansible_distribution_release == 'jessie' and 'openjdk-8-jdk' in java_packages
 
 
 - name: Ensure Java is installed.
   apt:
-    name: "{{ item }}"
+    name: "{{ java_packages }}"
     state: present
-  with_items: "{{ java_packages }}"
   when: not(ansible_distribution == 'Debian' and ansible_distribution_release == 'jessie' and 'openjdk-8-jdk' in java_packages)
 
 - name: Get openjdk alternative

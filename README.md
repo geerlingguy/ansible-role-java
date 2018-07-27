@@ -16,7 +16,7 @@ Available variables are listed below, along with default values:
     java_packages:
       - java-1.7.0-openjdk
 
-Set the version/development kit of Java to install, along with any other necessary Java packages. 
+Set the version/development kit of Java to install, along with any other necessary Java packages.
 By default, it will try to install OpenJDK 8, even if it is not feasible (it will fail, in that case).
 
 CA certificates can be added to the java keystore with the following variables:
@@ -29,6 +29,14 @@ CA certificates can be added to the java keystore with the following variables:
         - url: google.com
       password: changeit
 ```
+
+```yaml
+    keep_oracle_jdk: false
+```
+
+This role uninstall OracleJDK by default. You can change the
+`keep_oracle_jdk` variable to keep it. This is only available 
+on Debian distributions.
 
 ## Dependencies
 

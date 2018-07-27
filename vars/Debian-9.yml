@@ -6,3 +6,8 @@ __java_packages:
   - openjdk-8-jdk
 
 java_home: /usr/lib/jvm/java-8-openjdk-amd64
+
+oracle_jdk_packages:
+  - oracle-java8-installer
+  - oracle-java8-set-default
+  - oracle-java8-unlimited-jce-policy
