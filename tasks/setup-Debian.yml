@@ -4,6 +4,7 @@
   apt:
     name: "{{ oracle_jdk_packages }}"
     state: absent
+    purge: true
   when: oracle_jdk_packages is defined and not keep_oracle_jdk|bool
 
 - name: Add jessie-backports if needed
