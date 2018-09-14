@@ -9,3 +9,4 @@ ca_certificates:
   password: "changeit"
 default_keystore_password: "changeit"
 keep_oracle_jdk: false
+add_bouncycastle: false

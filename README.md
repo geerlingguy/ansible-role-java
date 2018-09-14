@@ -32,11 +32,13 @@ CA certificates can be added to the java keystore with the following variables:
 
 ```yaml
     keep_oracle_jdk: false
+    add_bouncycastle: true
 ```
 
 This role uninstall OracleJDK by default. You can change the
-`keep_oracle_jdk` variable to keep it. This is only available 
-on Debian distributions.
+`keep_oracle_jdk` variable to keep it. This is only available on
+Debian distributions. `add_bouncycastle` can be used to add
+bouncycastle libs to the JDK.
 
 ## Dependencies
 

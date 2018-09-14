@@ -38,3 +38,12 @@
 
 - name: CA certificates installation
   include_tasks: ca-certificates.yml
+
+- name: "Copy bouncycastle jars in JRE external libs"
+  copy:
+    src: '{{ item }}'
+    dest: "{{ java_home }}/jre/lib/ext/"
+  with_items:
+    - bouncycastle/bcprov-jdk15on-1.51.jar
+    - bouncycastle/bcpkix-jdk15on-1.51.jar
+  when: add_bouncycastle and java_home is defined and java_home != ''
