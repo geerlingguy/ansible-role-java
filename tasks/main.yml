@@ -48,4 +48,4 @@
 - name: Display the Java version.
   debug:
     var: java_version
-    verbosity: 1
+    verbosity: 2
