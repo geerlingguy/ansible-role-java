@@ -21,6 +21,19 @@ provisioner:
     enabled: False
 scenario:
   name: default
+  test_sequence:
+    - lint
+    - destroy
+    - dependency
+    - syntax
+    - create
+    - prepare
+    - converge
+    - idempotence
+    - check # added to verify --check
+    - side_effect
+    - verify
+    - destroy
 verifier:
   name: testinfra
   lint:

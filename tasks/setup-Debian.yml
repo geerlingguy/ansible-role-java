@@ -32,6 +32,7 @@
   shell: "update-java-alternatives -l | grep openjdk | cut -f -1 -d ' '"
   changed_when: false
   register: openjdk_alternative
+  check_mode: false
 
 - name: Set Java alternatives
   command: "update-java-alternatives -s {{ openjdk_alternative.stdout }}"
