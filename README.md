@@ -22,6 +22,10 @@ Set the version/development kit of Java to install, along with any other necessa
 
 If set, the role will set the global environment variable `JAVA_HOME` to this value.
 
+By default, the java version will be checked. In order to disable this check, specify the following:
+
+    java_version_check: false
+
 ## Dependencies
 
 None.
