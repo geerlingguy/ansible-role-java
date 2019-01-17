@@ -22,12 +22,11 @@ By default, it will try to install OpenJDK 8, even if it is not feasible (it wil
 CA certificates can be added to the java keystore with the following variables:
 
 ```yaml
-    ca-certificates:
-      certificates:
-        - alias: cert
-          path: /usr/local/share/ca-certificates/cert.crt
-        - url: google.com
-      password: changeit
+ca_certificates_password: ...    # Role default: "changeit", but you should define your own from vault
+devsecops_ca_enabled: True|False # Role default: true, for the local should be false 
+app_certificates:                # Role default: [], the app can define its own certificates
+  - alias: ...
+    path: ...
 ```
 
 ```yaml

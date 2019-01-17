@@ -4,9 +4,15 @@
 # java_packages: []
 
 java_home: ""
+devsecops_ca_enabled: true
+devsecops_ca:
+  - alias: peopledoc-ca
+    path: /usr/local/share/ca-certificates/devsecops-ca.crt
+app_certificates: []
+ca_certificates_password: "changeit"
 ca_certificates:
-  certificates: []
-  password: "changeit"
+  certificates: {{ app_certificates + devsecops_ca if devsecops_ca_enabled else app_certificates}}
+  password: {{ca_certificates_password}}
 default_keystore_password: "changeit"
 keep_oracle_jdk: false
 add_bouncycastle: false
