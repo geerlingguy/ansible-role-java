@@ -17,6 +17,10 @@
   include_vars: "{{ ansible_distribution|title }}-{{ ansible_distribution_version.split('.')[0] }}.yml"
   when: ansible_os_family == 'Debian'
 
+- name: Include Windows specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+  when: ansible_os_family == 'Windows'
+
 - name: Define java_packages.
   set_fact:
     java_packages: "{{ __java_packages | list }}"
@@ -32,10 +36,13 @@
 - include_tasks: setup-FreeBSD.yml
   when: ansible_os_family == 'FreeBSD'
 
+- include_tasks: setup-Windows.yml
+  when: ansible_os_family == 'Windows'
+
 # Environment setup.
 - name: Set JAVA_HOME if configured.
   template:
     src: java_home.sh.j2
     dest: /etc/profile.d/java_home.sh
     mode: 0644
-  when: java_home is defined and java_home
+  when: java_home is defined and java_home and ansible_os_family != 'Windows'
