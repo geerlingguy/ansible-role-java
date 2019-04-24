@@ -10,6 +10,14 @@
     - ansible_distribution == 'Ubuntu'
     - ansible_distribution_version == '18.04'
 
+- name: installing repo for Java 8 in Ubuntu
+  apt_repository:
+    repo: 'ppa:openjdk-r/ppa'
+  when:
+    - ansible_distribution == 'Ubuntu'
+    - ansible_distribution_major_version < '16'
+    - java_packages == 'openjdk-8-jdk'
+
 - name: Ensure Java is installed.
   apt:
     name: "{{ java_packages }}"
