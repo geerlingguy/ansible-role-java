@@ -1,5 +1,6 @@
 ---
 - name: Ensure Java is installed.
-  package:
+  yum:
     name: "{{ java_packages }}"
+    allow_downgrade: true
     state: present
