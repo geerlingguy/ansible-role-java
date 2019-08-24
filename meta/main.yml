@@ -20,6 +20,7 @@ galaxy_info:
         - wheezy
         - jessie
         - stretch
+        - buster
     - name: Ubuntu
       versions:
         - precise
