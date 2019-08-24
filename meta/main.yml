@@ -2,6 +2,7 @@
 dependencies: []
 
 galaxy_info:
+  role_name: java
   author: geerlingguy
   description: Java for Linux
   company: "Midwestern Mac, LLC"
