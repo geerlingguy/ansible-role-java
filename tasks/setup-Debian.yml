@@ -10,6 +10,11 @@
     - ansible_distribution == 'Ubuntu'
     - ansible_distribution_version == '18.04'
 
+- name: Update cache
+  apt:
+    name: "*"
+    update_cache: yes
+
 - name: Ensure Java is installed.
   apt:
     name: "{{ java_packages }}"

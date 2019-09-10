@@ -1,4 +1,9 @@
 ---
+- name: Update cache
+  yum:
+    name: "*"
+    update_cache: yes
+
 - name: Ensure Java is installed.
   package:
     name: "{{ java_packages }}"
