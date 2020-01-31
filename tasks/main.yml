@@ -39,3 +39,9 @@
     dest: /etc/profile.d/java_home.sh
     mode: 0644
   when: java_home is defined and java_home
+
+- name: Set the default Java
+  alternatives:
+    name: java
+    path: "{{ java_home }}/bin/java"
+  when: java_home is defined and java_home and java_set_default

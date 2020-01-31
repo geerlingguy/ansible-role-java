@@ -4,3 +4,6 @@
 # java_packages: []
 
 java_home: ""
+# Whether to set the installed Java binary as the default java. You will need
+# to set java_home too for this to be done
+java_set_default: true
