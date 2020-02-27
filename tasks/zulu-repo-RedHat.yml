@@ -1,0 +1,12 @@
+---
+- name: Import Zulu repo GPG key.
+  rpm_key:
+    key: "{{ zulu_repo_key_url }}"
+
+- name: Add Zulu repo.
+  get_url:
+    url: "{{ zulu_repo_url }}"
+    dest: /etc/yum.repos.d/zulu.repo
+    owner: root
+    group: root
+    mode: '644'

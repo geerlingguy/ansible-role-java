@@ -1,4 +1,7 @@
 ---
+- include_tasks: zulu-repo-RedHat.yml
+  when: ('zulu' in java_repos | list)
+
 - name: Ensure Java is installed.
   package:
     name: "{{ java_packages }}"

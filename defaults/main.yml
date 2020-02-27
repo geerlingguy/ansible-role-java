@@ -4,3 +4,7 @@
 # java_packages: []
 
 java_home: ""
+
+# Repository options include:
+#   - zulu
+java_repos: []

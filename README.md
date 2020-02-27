@@ -18,6 +18,10 @@ Available variables are listed below, along with default values:
 
 Set the version/development kit of Java to install, along with any other necessary Java packages. Some other options include are included in the distribution-specific files in this role's 'defaults' folder.
 
+    java_repos: []
+
+If set, the role will install the corresponding repositories according to the distribution. Options include `zulu`.
+
     java_home: ""
 
 If set, the role will set the global environment variable `JAVA_HOME` to this value.
@@ -28,35 +32,62 @@ None.
 
 ## Example Playbook (using default package)
 
-    - hosts: servers
-      roles:
-        - role: geerlingguy.java
-          become: yes
+```yaml
+- hosts: servers
+  become: true
+  roles:
+    - role: geerlingguy.java
+```
 
 ## Example Playbook (install OpenJDK 8)
 
 For RHEL / CentOS:
 
-    - hosts: server
-      roles:
-        - role: geerlingguy.java
-          when: "ansible_os_family == 'RedHat'"
-          java_packages:
-            - java-1.8.0-openjdk
+```yaml
+- hosts: servers
+  become: true
+  roles:
+    - role: geerlingguy.java
+      when: ansible_os_family == 'RedHat'
+      vars:
+        java_packages:
+          - java-1.8.0-openjdk
+```
 
 For Ubuntu < 16.04:
 
-    - hosts: server
-      tasks:
-        - name: installing repo for Java 8 in Ubuntu
-  	      apt_repository: repo='ppa:openjdk-r/ppa'
-    
-    - hosts: server
-      roles:
-        - role: geerlingguy.java
-          when: "ansible_os_family == 'Debian'"
+```yaml
+- hosts: servers
+  become: true
+  pre_tasks:
+    - name: installing repo for Java 8 in Ubuntu
+      apt_repository:
+        repo: ppa:openjdk-r/ppa
+      when: ansible_distribution == 'Ubuntu'
+  roles:
+    - role: geerlingguy.java
+      when: ansible_os_family == 'Debian'
+      vars:
+        java_packages:
+          - openjdk-8-jdk
+```
+
+## Example Playbook (install Zulu OpenJDK 8)
+
+For RHEL / CentOS / Fedora / Debian / Ubuntu:
+
+```yaml
+- hosts: servers
+  become: true
+  roles:
+    - role: geerlingguy.java
+      when: ansible_os_family in ['RedHat', 'Debian']
+      vars:
+          java_repos:
+            - zulu
           java_packages:
-            - openjdk-8-jdk
+            - zulu-8
+```
 
 ## License
 

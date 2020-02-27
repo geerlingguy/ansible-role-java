@@ -1,0 +1,9 @@
+---
+- name: Import Zulu repo GPG key.
+  apt_key:
+    keyserver: "{{ zulu_repo_key_server }}"
+    id: "{{ zulu_repo_key_id }}"
+
+- name: Add Zulu repo.
+  apt_repository:
+    repo: "{{ zulu_repo_source_string }}"

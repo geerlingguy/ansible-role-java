@@ -2,5 +2,12 @@
 # JDK version options include:
 #   - java
 #   - java-1.8.0-openjdk
+#   - zulu-6
+#   - zulu-7
+#   - zulu-8
+#   - zulu-11
 __java_packages:
   - java-1.8.0-openjdk
+
+zulu_repo_key_url: http://repos.azulsystems.com/RPM-GPG-KEY-azulsystems
+zulu_repo_url: http://repos.azulsystems.com/rhel/zulu.repo

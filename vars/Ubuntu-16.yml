@@ -3,5 +3,13 @@
 #   - java
 #   - openjdk-8-jdk
 #   - openjdk-9-jdk
+#   - zulu-6
+#   - zulu-7
+#   - zulu-8
+#   - zulu-11
 __java_packages:
   - openjdk-8-jdk
+
+zulu_repo_key_id: 0xB1998361219BD9C9
+zulu_repo_key_server: keyserver.ubuntu.com
+zulu_repo_source_string: deb http://repos.azulsystems.com/ubuntu stable main

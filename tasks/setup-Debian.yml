@@ -1,4 +1,7 @@
 ---
+- include_tasks: zulu-repo-Debian.yml
+  when: ('zulu' in java_repos | list)
+
 # See: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199 and
 # https://github.com/geerlingguy/ansible-role-java/issues/64
 - name: Ensure 'man' directory exists.

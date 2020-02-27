@@ -3,5 +3,12 @@
 #   - java-1.8.0-openjdk
 #   - java-11-openjdk
 #   - java-latest-openjdk
+#   - zulu-6
+#   - zulu-7
+#   - zulu-8
+#   - zulu-11
 __java_packages:
   - java-11-openjdk
+
+zulu_repo_key_url: http://repos.azulsystems.com/RPM-GPG-KEY-azulsystems
+zulu_repo_url: http://repos.azulsystems.com/rhel/zulu.repo
