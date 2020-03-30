@@ -10,7 +10,7 @@
     - ansible_distribution == 'Ubuntu'
     - ansible_distribution_version == '18.04'
 
-- name: Add Java 11 Repository
+- name: Add Java 11 Repository for ubuntu 16.04
   become: yes
   become_user: root
   apt_repository:
@@ -19,6 +19,15 @@
   when:
     - ansible_distribution == 'Ubuntu'
     - ansible_distribution_version == '16.04'
+  register: openjdk11repo
+
+- name: Update and upgrade apt packages for ubuntu 16.04
+  become: true
+  become_user: root
+  apt:
+    upgrade: yes
+    update_cache: yes
+  when: openjdk11repo.changed
 
 - name: Ensure Java is installed.
   apt:
