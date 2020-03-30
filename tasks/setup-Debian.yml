@@ -10,6 +10,16 @@
     - ansible_distribution == 'Ubuntu'
     - ansible_distribution_version == '18.04'
 
+- name: Add Java 11 Repository
+  become: yes
+  become_user: root
+  apt_repository:
+    repo: 'ppa:openjdk-r/ppa'
+    state: present
+  when:
+    - ansible_distribution == 'Ubuntu'
+    - ansible_distribution_version == '16.04'
+
 - name: Ensure Java is installed.
   apt:
     name: "{{ java_packages }}"
