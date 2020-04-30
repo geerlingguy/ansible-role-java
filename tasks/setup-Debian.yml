@@ -7,7 +7,7 @@
     state: directory
     recurse: true
   when:
-    - (ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04') or 
+    - (ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04') or
       (ansible_distribution == 'Ubuntu' and ansible_distribution_version == '20.04')
 
 - name: Ensure Java is installed.
