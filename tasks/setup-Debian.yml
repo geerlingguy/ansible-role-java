@@ -2,6 +2,7 @@
 # See: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199 and
 # https://github.com/geerlingguy/ansible-role-java/issues/64
 - name: Ensure 'man' directory exists.
+  become: True
   file:
     path: /usr/share/man/man1
     state: directory
@@ -11,6 +12,7 @@
     - ansible_distribution_major_version | int >= 18
 
 - name: Ensure Java is installed.
+  become: True
   apt:
     name: "{{ java_packages }}"
     state: present
