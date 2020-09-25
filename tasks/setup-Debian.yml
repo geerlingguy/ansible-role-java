@@ -1,6 +1,9 @@
 ---
 # See: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199 and
 # https://github.com/geerlingguy/ansible-role-java/issues/64
+- name: Update apt cache.
+  apt: update_cache=yes cache_valid_time=3600
+
 - name: Ensure 'man' directory exists.
   file:  # noqa 208
     path: /usr/share/man/man1
