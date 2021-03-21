@@ -5,6 +5,7 @@
   file:  # noqa 208
     path: /usr/share/man/man1
     state: directory
+    mode: 0755
     recurse: true
   when:
     - ansible_distribution == 'Ubuntu'
