@@ -18,7 +18,7 @@
   when: ansible_os_family == 'Debian'
 
 - name: Define java_packages.
-  set_fact:
+  ansible.builtin.set_fact:
     java_packages: "{{ __java_packages | list }}"
   when: java_packages is not defined
 
@@ -34,7 +34,7 @@
 
 # Environment setup.
 - name: Set JAVA_HOME if configured.
-  template:
+  ansible.builtin.template:
     src: java_home.sh.j2
     dest: /etc/profile.d/java_home.sh
     mode: 0644

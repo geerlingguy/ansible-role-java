@@ -1,11 +1,11 @@
 ---
 - name: Ensure Java is installed.
-  pkgng:
+  community.general.pkgng:
     name: "{{ java_packages }}"
     state: present
 
 - name: ensure proc is mounted
-  mount: name=/proc fstype=procfs src=proc opts=rw state=mounted
+  ansible.posix.mount: name=/proc fstype=procfs src=proc opts=rw state=mounted
 
 - name: ensure fdesc is mounted
-  mount: name=/dev/fd fstype=fdescfs src=fdesc opts=rw state=mounted
+  ansible.posix: name=/dev/fd fstype=fdescfs src=fdesc opts=rw state=mounted
