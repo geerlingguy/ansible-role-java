@@ -15,3 +15,4 @@
   apt:
     name: "{{ java_packages }}"
     state: present
+    update_cache: true
