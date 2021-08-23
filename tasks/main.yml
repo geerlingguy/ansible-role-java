@@ -6,6 +6,7 @@
 - name: Include version-specific variables for CentOS/RHEL.
   include_vars: "RedHat-{{ ansible_distribution_version.split('.')[0] }}.yml"
   when: ansible_distribution == 'CentOS' or
+        ansible_distribution == 'AlmaLinux' or
         ansible_distribution == 'Red Hat Enterprise Linux' or
         ansible_distribution == 'RedHat'
 
@@ -24,7 +25,8 @@
 
 # Setup/install tasks.
 - include_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+  when: ansible_os_family == 'RedHat' or
+        ansible_os_family == 'AlmaLinux'
 
 - include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
