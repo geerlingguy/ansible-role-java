@@ -3,7 +3,7 @@
   include_vars: "{{ ansible_distribution }}.yml"
   when: ansible_distribution == 'FreeBSD' or ansible_distribution == 'Fedora'
 
-- name: Include version-specific variables for CentOS/RHEL.
+- name: Include version-specific variables for CentOS/RHEL/AlmaLinux.
   include_vars: "RedHat-{{ ansible_distribution_version.split('.')[0] }}.yml"
   when: ansible_distribution == 'CentOS' or
         ansible_distribution == 'AlmaLinux' or
