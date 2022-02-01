@@ -22,6 +22,7 @@ galaxy_info:
         - jessie
         - stretch
         - buster
+        - bullseye
     - name: Ubuntu
       versions:
         - precise
