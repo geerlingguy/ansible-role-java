@@ -4,8 +4,18 @@
     name: "{{ java_packages }}"
     state: present
 
-- name: ensure proc is mounted
-  mount: name=/proc fstype=procfs src=proc opts=rw state=mounted
+- name: Ensure proc is mounted
+  mount:
+    name: /proc
+    fstype: procfs
+    src: proc
+    opts: rw
+    state: mounted
 
-- name: ensure fdesc is mounted
-  mount: name=/dev/fd fstype=fdescfs src=fdesc opts=rw state=mounted
+- name: Ensure fdesc is mounted
+  mount:
+    name: /dev/fd
+    fstype: fdescfs
+    src: fdesc
+    opts: rw
+    state: mounted
