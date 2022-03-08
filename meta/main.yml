@@ -30,6 +30,7 @@ galaxy_info:
         - xenial
         - bionic
         - focal
+        - impish
     - name: FreeBSD
       versions:
         - 10.2
