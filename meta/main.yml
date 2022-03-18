@@ -33,6 +33,9 @@ galaxy_info:
     - name: FreeBSD
       versions:
         - 10.2
+    - name: Amazon
+      versions:
+        - 2
   galaxy_tags:
     - development
     - system

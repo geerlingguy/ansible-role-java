@@ -1,0 +1,9 @@
+---
+# JDK version options include:
+#   - java-1.8.0-openjdk
+#   - java-latest-openjdk
+#   - https://corretto.aws/downloads/latest/amazon-corretto-8-x64-linux-jdk.rpm
+#   - https://corretto.aws/downloads/latest/amazon-corretto-17-x64-linux-jdk.rpm
+#   - https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.rpm
+__java_packages:
+  - https://corretto.aws/downloads/latest/amazon-corretto-8-x64-linux-jdk.rpm

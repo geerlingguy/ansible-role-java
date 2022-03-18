@@ -1,7 +1,7 @@
 ---
-- name: Include OS-specific variables for Fedora or FreeBSD.
+- name: Include OS-specific variables for Fedora, FreeBSD or Amazon Linux.
   include_vars: "{{ ansible_distribution }}.yml"
-  when: ansible_distribution == 'FreeBSD' or ansible_distribution == 'Fedora'
+  when: ansible_distribution == 'FreeBSD' or ansible_distribution == 'Fedora' or ansible_distribution == 'Amazon'
 
 - name: Include version-specific variables for CentOS/RHEL.
   include_vars: "RedHat-{{ ansible_distribution_version.split('.')[0] }}.yml"
