@@ -7,7 +7,7 @@ galaxy_info:
   description: Java for Linux
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
-  min_ansible_version: 2.4
+  min_ansible_version: 2.9
   platforms:
     - name: EL
       versions:
@@ -30,6 +30,7 @@ galaxy_info:
         - xenial
         - bionic
         - focal
+        - jammy
     - name: FreeBSD
       versions:
         - 10.2
