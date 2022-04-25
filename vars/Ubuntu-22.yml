@@ -1,0 +1,6 @@
+---
+# JDK version options include:
+#   - java
+#   - openjdk-18-jdk
+__java_packages:
+  - openjdk-18-jdk
