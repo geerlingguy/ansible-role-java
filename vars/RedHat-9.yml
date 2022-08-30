@@ -1,0 +1,7 @@
+---
+# JDK version options include:
+#   - java-1.8.0-openjdk
+#   - java-11-openjdk
+#   - java-17-openjdk
+__java_packages:
+  - java-17-openjdk
