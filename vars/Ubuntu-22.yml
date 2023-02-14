@@ -3,4 +3,4 @@
 #   - java
 #   - openjdk-18-jdk
 __java_packages:
-  - openjdk-18-jdk
+  - openjdk-17-jdk
