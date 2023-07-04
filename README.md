@@ -64,7 +64,7 @@ For Ubuntu < 16.04:
 
 ## License
 
-GPLv3 or later
+GPLv2 or later
 
 ## Author Information
 
