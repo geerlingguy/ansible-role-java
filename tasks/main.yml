@@ -1,4 +1,10 @@
 ---
+- name: Restrict role from running on encumbered Linux distributions.
+  fail:
+  when:
+    - ansible_distribution == 'RedHat'
+    - redhat_eula_restrictions != 'agree'
+
 - name: Include OS-specific variables for Fedora or FreeBSD.
   include_vars: "{{ ansible_distribution }}.yml"
   when: ansible_distribution == 'FreeBSD' or ansible_distribution == 'Fedora'

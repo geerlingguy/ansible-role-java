@@ -22,6 +22,10 @@ Set the version/development kit of Java to install, along with any other necessa
 
 If set, the role will set the global environment variable `JAVA_HOME` to this value.
 
+    redhat_eula_restrictions: disagree
+
+For users of Red Hat Enterprise Linux, to allow this role to work alongside Red Hat's restrictive EULA, you must set this variable to `agree`, verifying you agree to Red Hat's EULA, and their coercive restriction on the free distribution of GPLv2 open source code.
+
 ## Dependencies
 
 None.
@@ -60,7 +64,7 @@ For Ubuntu < 16.04:
 
 ## License
 
-MIT / BSD
+GPLv3 or later
 
 ## Author Information
 
