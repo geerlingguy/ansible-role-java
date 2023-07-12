@@ -19,6 +19,7 @@ galaxy_info:
         - stretch
         - buster
         - bullseye
+        - bookworm
     - name: Ubuntu
       versions:
         - precise
