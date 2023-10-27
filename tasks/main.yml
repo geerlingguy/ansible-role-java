@@ -10,6 +10,7 @@
       'CentOS',
       'Red Hat Enterprise Linux',
       'RedHat',
+      'OracleLinux',
       'Rocky',
       'AlmaLinux'
     ]
