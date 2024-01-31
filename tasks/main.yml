@@ -23,6 +23,10 @@
   include_vars: "{{ ansible_distribution | title }}-{{ ansible_distribution_version.split('.')[0] }}.yml"
   when: ansible_os_family == 'Debian'
 
+- name: Include version-specific variables for Amazon.
+  include_vars: "{{ ansible_distribution | title }}-{{ ansible_distribution_version.split('.')[0] }}.yml"
+  when: ansible_os_family == 'Amazon'
+
 - name: Define java_packages.
   set_fact:
     java_packages: "{{ __java_packages | list }}"
@@ -30,7 +34,10 @@
 
 # Setup/install tasks.
 - include_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+  when: ansible_os_family == 'RedHat' and ansible_distribution_file_variety == 'RedHat'
+
+- include_tasks: setup-Amazon.yml
+  when: ansible_distribution == 'Amazon'
 
 - include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
