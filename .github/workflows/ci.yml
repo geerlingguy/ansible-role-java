@@ -75,9 +75,12 @@ jobs:
     container:
       image: geerlingguy/docker-amazonlinux2023-ansible
       volumes:
-        - ansbile-java-role:/playbook
+        - ${{ github.workspace }}:/playbook
 
     steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+
       - name: amazon-2023 java install
         uses: dawidd6/action-ansible-playbook@v2
         with:
