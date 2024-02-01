@@ -68,15 +68,18 @@ jobs:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.distro }}
-  
+
   amazon-2023:
     name: amazon-2023
-    runs-on: geerlingguy/docker-amazonlinux2023-ansible
-    
-    steps: 
-      - name: amazon-2023 java install 
-        uses: dawidd6/action-ansible-playbook@v2
-        with: 
-          playbook: playbook.yml
-          directory: ./
+    runs-on: ubuntu-latest
+    container:
+      image: geerlingguy/docker-amazonlinux2023-ansible
+      volumes:
+        - ansbile-java-role:/playbook
 
+    steps:
+      - name: amazon-2023 java install
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: playbook.yml
+          directory: /playbook

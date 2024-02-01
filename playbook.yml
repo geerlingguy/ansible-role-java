@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  gather_facts: true
+  become: true
+  roles:
+     - role: ansible-role-java
+       when: "ansible_distribution == 'Amazon'" 
+       java_packages:
+         - java-17
