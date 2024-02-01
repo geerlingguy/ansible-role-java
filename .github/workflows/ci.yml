@@ -82,7 +82,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: amazon-2023 java install
-        uses: dawidd6/action-ansible-playbook@v2
-        with:
-          playbook: playbook.yml
-          directory: /playbook
+        run: docker exec --tty [container_id] env TERM=xterm ansible --version b. docker exec --tty [container_id] env TERM=xterm ansible-playbook /playbook/playbook.yml --syntax-check
