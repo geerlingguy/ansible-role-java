@@ -5,6 +5,6 @@
   become: true
   roles:
      - role: ansible-role-java
-       when: "ansible_distribution == 'Amazon'" 
+       when: "ansible_distribution == 'Amazon'"
        java_packages:
-         - java-17
+          - java-17
