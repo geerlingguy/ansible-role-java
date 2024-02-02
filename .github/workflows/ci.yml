@@ -47,6 +47,7 @@ jobs:
           - ubuntu2004
           - debian12
           - debian11
+          - amazonlinux2023
 
     steps:
       - name: Check out the codebase.
@@ -68,18 +69,3 @@ jobs:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.distro }}
-
-  amazon-2023:
-    name: amazon-2023
-    runs-on: ubuntu-latest
-    container:
-      image: geerlingguy/docker-amazonlinux2023-ansible
-      volumes:
-        - ${{ github.workspace }}:/playbook
-
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
-
-      - name: amazon-2023 java install
-        run: docker exec --tty [container_id] env TERM=xterm ansible --version b. docker exec --tty [container_id] env TERM=xterm ansible-playbook /playbook/playbook.yml --syntax-check
