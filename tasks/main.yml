@@ -27,10 +27,6 @@
   include_vars: "{{ ansible_distribution | title }}-{{ ansible_distribution_version.split('.')[0] }}.yml"
   when: ansible_os_family == 'Debian'
 
-- name: Include version-specific variables for Amazon.
-  include_vars: "{{ ansible_distribution | title }}-{{ ansible_distribution_version.split('.')[0] }}.yml"
-  when: ansible_os_family == 'Amazon'
-
 - name: Define java_packages.
   set_fact:
     java_packages: "{{ __java_packages | list }}"
