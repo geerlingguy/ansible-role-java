@@ -37,7 +37,7 @@
   when: ansible_os_family == 'RedHat' and ansible_distribution_file_variety == 'RedHat'
 
 - include_tasks: setup-Amazon.yml
-  when: ansible_distribution == 'Amazon'
+  when: ansible_distribution == 'Amazon' and ansible_distribution_version == '2023'
 
 - include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
