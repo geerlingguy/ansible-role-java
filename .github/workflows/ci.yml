@@ -47,6 +47,7 @@ jobs:
           - ubuntu2004
           - debian12
           - debian11
+          - amazonlinux2023
 
     steps:
       - name: Check out the codebase.
