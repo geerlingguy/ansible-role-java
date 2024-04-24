@@ -34,7 +34,7 @@
 
 # Setup/install tasks.
 - include_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat' and ansible_distribution_file_variety == 'RedHat'
+  when: ansible_os_family == 'RedHat'
 
 - include_tasks: setup-Amazon.yml
   when: ansible_distribution == 'Amazon'
