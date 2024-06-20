@@ -4,4 +4,4 @@
 #   - java-11-openjdk
 #   - java-17-openjdk
 __java_packages:
-  - java-17-openjdk
+  - java-11-openjdk
