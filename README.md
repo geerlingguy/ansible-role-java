@@ -1,6 +1,6 @@
 # Ansible Role: Java
 
-[![CI](https://github.com/geerlingguy/ansible-role-java/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-java/actions?query=workflow%3ACI)
+[![CI](https://github.com/geerlingguy/ansible-role-java/actions/workflows/ci.yml/badge.svg)](https://github.com/geerlingguy/ansible-role-java/actions/workflows/ci.yml)
 
 Installs Java for RedHat/CentOS, Amazon, and Debian/Ubuntu linux servers.
 
