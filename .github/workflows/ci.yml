@@ -42,6 +42,7 @@ jobs:
       matrix:
         distro:
           - rockylinux9
+          - rockylinux10
           - ubuntu2404
           - ubuntu2204
           - ubuntu2004
