@@ -29,6 +29,7 @@ galaxy_info:
         - focal
         - jammy
         - noble
+        - resolute
     - name: FreeBSD
       versions:
         - 10.2

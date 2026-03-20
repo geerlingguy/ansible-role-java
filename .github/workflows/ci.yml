@@ -43,6 +43,7 @@ jobs:
         distro:
           - rockylinux9
           - rockylinux10
+          - ubuntu2604
           - ubuntu2404
           - ubuntu2204
           - debian13
