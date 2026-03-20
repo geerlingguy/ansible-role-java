@@ -40,7 +40,7 @@ For RHEL / CentOS:
     - hosts: server
       roles:
         - role: geerlingguy.java
-          when: "ansible_facts.os_family == 'RedHat'"
+          when: "ansible_facts['os_family'] == 'RedHat'"
           java_packages:
             - java-1.8.0-openjdk
 
@@ -50,11 +50,11 @@ For Ubuntu < 16.04:
       tasks:
         - name: installing repo for Java 8 in Ubuntu
   	      apt_repository: repo='ppa:openjdk-r/ppa'
-    
+
     - hosts: server
       roles:
         - role: geerlingguy.java
-          when: "ansible_facts.os_family == 'Debian'"
+          when: "ansible_facts['os_family'] == 'Debian'"
           java_packages:
             - openjdk-8-jdk
 
