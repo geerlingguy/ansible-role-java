@@ -1,0 +1,9 @@
+---
+# JDK version options include:
+#   - openjdk-25-jdk (default, non-LTS)
+#   - openjdk-21-jdk (LTS, in universe)
+#   - openjdk-17-jdk (LTS, in universe)
+#   - openjdk-11-jdk (LTS, in universe)
+#   - openjdk-8-jdk (LTS, in universe)
+__java_packages:
+  - openjdk-25-jdk
